@@ -152,9 +152,12 @@ public class App {
 		  	int temp; 
 		  	//考虑是否设置为一直发送
 			//System.out.println("全部接受"+input.read());
-			if(input.read()==-1){
+			if((temp=input.read())==-1){
 				return false;
 			} 
+			else{
+				buffer_rec[tail++]=(byte)temp;
+			}
 		 // System.out.println("receive()正在接受信息");
 			while((temp= input.read())!=-1){
 				if((byte)temp=='\n'){
@@ -168,8 +171,8 @@ public class App {
 					buffer_rec[tail++]=(byte) temp;
 				}
 			}
-			return true;
 			
+			return true;
 		}
 	  
 	    public static void main(String[] args) throws Exception {  
